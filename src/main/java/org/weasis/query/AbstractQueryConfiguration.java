@@ -11,9 +11,9 @@ import org.weasis.dicom.data.Patient;
 import org.weasis.dicom.data.Series;
 import org.weasis.dicom.data.Study;
 import org.weasis.dicom.data.xml.Base64;
+import org.weasis.dicom.mf.WadoParameters;
+import org.weasis.dicom.mf.ArcQuery.ViewerMessage;
 import org.weasis.dicom.util.StringUtil;
-import org.weasis.dicom.wado.WadoParameters;
-import org.weasis.dicom.wado.WadoQuery.ViewerMessage;
 import org.weasis.servlet.ConnectorProperties;
 
 public abstract class AbstractQueryConfiguration {
@@ -40,11 +40,6 @@ public abstract class AbstractQueryConfiguration {
     public abstract void buildFromSeriesInstanceUID(CommonQueryParams params, String... seriesInstanceUIDs);
 
     public abstract void buildFromSopInstanceUID(CommonQueryParams params, String... sopInstanceUIDs);
-
-    public String getCharsetEncoding() {
-        // Not required with DICOM C-FIND (handle with attributes.getString(...))
-        return properties.getProperty("arc.db.encoding", "UTF-8");
-    }
 
     public WadoParameters getWadoParameters() {
         String wadoQueriesURL =
